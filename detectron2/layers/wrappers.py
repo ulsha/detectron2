@@ -223,4 +223,4 @@ def nonzero_tuple(x):
     """
     if x.dim() == 0:
         return torch.nonzero(x, as_tuple=False).unsqueeze(0).unbind(1)
-    return torch.nonzero(x, as_tuple=True).unbind(1)
+    return torch.nonzero(x, as_tuple=False).unbind(1)
