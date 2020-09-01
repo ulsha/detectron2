@@ -163,6 +163,13 @@ def get_model_zoo_configs() -> List[str]:
     return config_paths
 
 
+# For projects that are relative small and provide features that are very close
+# to detectron2's core functionalities, we install them under detectron2.projects
+PROJECTS = {
+    "detectron2.projects.point_rend": "projects/PointRend/point_rend",
+    "detectron2.projects.deeplab": "projects/DeepLab/deeplab",
+}
+
 setup(
     name="detectron2",
     version=get_version(),
@@ -170,7 +177,8 @@ setup(
     url="https://github.com/facebookresearch/detectron2",
     description="Detectron2 is FAIR's next-generation research "
     "platform for object detection and segmentation.",
-    packages=find_packages(exclude=("configs", "tests*")),
+    packages=find_packages(exclude=("configs", "tests*")) + list(PROJECTS.keys()),
+    package_dir=PROJECTS,
     package_data={"detectron2.model_zoo": get_model_zoo_configs()},
     python_requires=">=3.6",
     install_requires=[
@@ -184,7 +192,7 @@ setup(
         "tqdm>4.29.0",
         "tensorboard",
         "fvcore>=0.1.1",
-        "pycocotools>=2.0.1",
+        "pycocotools>=2.0.2",
         "future",  # used by caffe2
         "pydot",  # used to save caffe2 SVGs
     ],
