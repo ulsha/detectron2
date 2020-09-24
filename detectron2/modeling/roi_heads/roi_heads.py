@@ -69,7 +69,7 @@ def select_foreground_proposals(
     for proposals_per_image in proposals:
         gt_classes = proposals_per_image.gt_classes
         fg_selection_mask = (gt_classes != -1) & (gt_classes != bg_label)
-        fg_idxs = fg_selection_mask.nonzero().squeeze(1)
+        fg_idxs = torch.nonzero(fg_selection_mask,as_tuple=False).squeeze(1)
         fg_proposals.append(proposals_per_image[fg_idxs])
         fg_selection_masks.append(fg_selection_mask)
     return fg_proposals, fg_selection_masks

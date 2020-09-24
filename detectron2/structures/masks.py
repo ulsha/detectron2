@@ -342,7 +342,7 @@ class PolygonMasks:
             # Polygons is a list, so we have to move the indices back to CPU.
             if item.dtype == torch.bool:
                 assert item.dim() == 1, item.shape
-                item = item.nonzero().squeeze(1).cpu().numpy().tolist()
+                item = torch.nonzero(item,as_tuple=False).squeeze(1).cpu().numpy().tolist()
             elif item.dtype in [torch.int32, torch.int64]:
                 item = item.cpu().numpy().tolist()
             else:
