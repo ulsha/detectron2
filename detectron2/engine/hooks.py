@@ -26,7 +26,7 @@ __all__ = [
     "PeriodicWriter",
     "PeriodicCheckpointer",
     "LRScheduler",
-    "AutogradProfiler",
+#    "AutogradProfiler",
     "EvalHook",
     "PreciseBN",
 ]
