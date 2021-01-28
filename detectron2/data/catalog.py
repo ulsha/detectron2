@@ -55,7 +55,7 @@ class _DatasetCatalog(UserDict):
                     name, ", ".join(list(self.keys()))
                 )
             ) from e
-        return f()
+        return f(name)
 
     def list(self) -> List[str]:
         """
