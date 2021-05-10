@@ -208,6 +208,7 @@ class SimpleTrainer(TrainerBase):
         self.data_loader = data_loader
         self._data_loader_iter = iter(data_loader)
         self.optimizer = optimizer
+        self.loss = 0
 
     def run_step(self):
         """
@@ -226,6 +227,7 @@ class SimpleTrainer(TrainerBase):
         """
         loss_dict = self.model(data)
         losses = sum(loss_dict.values())
+        self.loss = losses
 
         """
         If you need to accumulate gradients or do something similar, you can
